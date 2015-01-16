@@ -35,25 +35,28 @@ public class Gerade {
 		System.out.println("Gerade:" +this);
 		System.out.println("Abstand zwischen den Punkten: " +abstand());
 		System.out.println("Koeffizient der Gerade: " +koeffizient());
-		
 	}
+	
 	public double abstand() {
 		double abst = Math.sqrt(Hilfe.quad(p2.x - p1.x) + Hilfe.quad(p2.y - p1.y));
 		return abst;
 	}
+	
 	public double koeffizient() {
 		double k;
-		double delx=p2.x - p1.x;
-		if(Math.abs(delx)>Hilfe.EPSILON)
+		double delx = p2.x - p1.x;
+		if(Math.abs(delx) > Hilfe.EPSILON)
 			k = (p2.y - p1.y)/delx;
 		else 
 			k = 1e8;
 		return k;
 	}
-	static double abstand(Punkt t1, Punkt t2) {
+	
+	public static double abstand(Punkt t1, Punkt t2) {
 		double abst = Math.sqrt(Hilfe.quad(t2.x - t1.x) + Hilfe.quad(t2.y - t1.y));
 		return abst;
 	}
+	
 	public static double koeffizient(Punkt t1, Punkt t2) {
 		double k, delx = t2.x - t1.x;
 		if(Math.abs(delx)>Hilfe.EPSILON)

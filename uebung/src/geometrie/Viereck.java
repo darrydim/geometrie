@@ -1,9 +1,9 @@
 package geometrie;
 
+import java.awt.Graphics;
+import java.awt.Point;
+
 public class Viereck extends GObjekt {
-	protected int anzahl = 4;
-	protected Punkt[] eckpunkte;
-	protected double[] seiten;
 	
 	public Viereck() {
 		super("Viereck", 4);
@@ -46,7 +46,9 @@ public class Viereck extends GObjekt {
 			fla1 = Dreieck.flaeche(p1, p2, p4);
 			fla2 = Dreieck.flaeche(p1, p3, p4);
 			fla3 = Dreieck.flaeche(p2, p3, p4);
-			if((Hilfe.signum(fla1) != Hilfe.signum(fla2)) || (Hilfe.signum(fla1) != Hilfe.signum(fla3)) || (Hilfe.signum(fla2) != Hilfe.signum(fla3))) {
+			if((Hilfe.signum(fla1) != Hilfe.signum(fla2)) || 
+			(Hilfe.signum(fla1) != Hilfe.signum(fla3))	|| 
+			(Hilfe.signum(fla2) != Hilfe.signum(fla3))) {
 				return 3;
 			} else {
 				return 0;
@@ -61,7 +63,7 @@ public class Viereck extends GObjekt {
 				System.out.println("Koordinaten fuer Punkt" +(i+1));
 				eckpunkte[i].eingabe();
 		}
-		if(kontrolle() >0) {
+		if(kontrolle() > 0) {
 			System.out.println("Falscher Punkt" +kontrolle());
 		}
 		} while(kontrolle() > 0);
@@ -117,6 +119,27 @@ public class Viereck extends GObjekt {
 		System.out.println("Umfang des Vierecks: " +umfang());
 		System.out.println("Flaeche des Vierecks: " +flaeche());
 		System.out.println("Art des Vierecks: " +art());
+	}
+	
+	public void zeichnen(Graphics g, double masstab) {
+		eckpunkteZ = new Point[anzahl];
+		for(int i = 0; i < eckpunkteZ.length; i++) {
+			eckpunkteZ[i] = new Point((int)(eckpunkte[i].x * masstab), (int)(eckpunkte[i].y * masstab));
+		}
+		
+		int mx[], my[];
+		mx = new int[eckpunkteZ.length];
+		my = new int[eckpunkteZ.length];
+		for(int i = 0; i < eckpunkteZ.length; i++) {
+			mx[i] = eckpunkteZ[i].x;
+			my[i] = eckpunkteZ[i].y;
+		}
+		
+		g.drawPolygon(mx, my, eckpunkteZ.length);
+	}
+	
+	public boolean contains(int x, int y) {
+		return true;
 	}
 } 
 

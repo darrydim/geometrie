@@ -1,10 +1,15 @@
 package geometrie;
 
-public abstract class GObjekt {
+import java.awt.Graphics;
+import java.awt.Point;
+
+public abstract class GObjekt implements GOZeichnen {
+
 	protected int anzahl;
 	protected String name;
 	protected Punkt[] eckpunkte;
 	protected double[] seiten;
+	protected Point[] eckpunkteZ; 
 	
 	public GObjekt(String name, int anzahl) {
 		this.name = name;

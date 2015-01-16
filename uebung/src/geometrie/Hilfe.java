@@ -9,9 +9,11 @@ public class Hilfe {
 		else 					  
 			return false;
 	}
+	
 	public static double quad(double x) {
 		return x*x;
 	}
+	
 	public static double signum(double x) {
 		if(x>Hilfe.EPSILON) 			
 			return 1;

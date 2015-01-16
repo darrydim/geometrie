@@ -6,12 +6,13 @@ public class Punkt {
 		x=0; y=0;
 	}
 	
-	public Punkt (Punkt p){
-		x=p.x; y=p.y;
-	}
 	public Punkt(double xN, double yN) { 
 		x = xN; 
 		y = yN; 
+	}
+	
+	public Punkt (Punkt p){
+		x=p.x; y=p.y;
 	}
 	
 	public void eingabe() {

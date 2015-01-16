@@ -1,9 +1,9 @@
 package geometrie;
 
+import java.awt.Graphics;
+import java.awt.Point;
+
 public class Dreieck extends GObjekt {
-	protected int anzahl = 3;
-	protected Punkt[] eckpunkte;
-	protected double[] seiten;
 	
 	public Dreieck() {
 		super("Dreieck", 3);
@@ -78,16 +78,16 @@ public class Dreieck extends GObjekt {
 		String s;
 		double a = seiten[0], b = seiten[1], c = seiten [2];
 		if(Hilfe.equal(a,b) && Hilfe.equal(b,c)) 
-			s = "gleichseitig";
+			s = " gleichseitig ";
 		else if(Hilfe.equal(a,b) || Hilfe.equal(b,c) || Hilfe.equal(a, c))
-			s = "gleichboeckig";
+			s = " gleichboeckig ";
 		else 
-			s = "ungleichseitig";
+			s = " ungleichseitig ";
 		
 		if(Hilfe.equal(maxWinkel(), Math.PI/2))
-			s = s + "rechtwinklig";
+			s = s + " rechtwinklig ";
 		else 
-			s = s + "unrechtwinklig";
+			s = s + " unrechtwinklig ";
 		return s;
 	} 
 	
@@ -127,7 +127,7 @@ public class Dreieck extends GObjekt {
 	}
 	
 	public String toString() {
-		return("Dreieck mit" +eckpunkte[0]+ " " +eckpunkte[1]+ " " +eckpunkte[2]);
+		return("Dreieck mit " +eckpunkte[0]+ " " +eckpunkte[1]+ " " +eckpunkte[2]);
 	}
 	
 	public void ausgabe() {
@@ -135,5 +135,26 @@ public class Dreieck extends GObjekt {
 		System.out.println("Umfang des Dreiecks" +umfang());
 		System.out.println("Flaeche des Dreiecks" +flaeche());
 		System.out.println("Art des Dreiecks" +art());
+	}
+	
+	public void zeichnen(Graphics g, double masstab) {
+		eckpunkteZ = new Point[anzahl];
+		for(int i = 0; i < eckpunkteZ.length; i++) {
+			eckpunkteZ[i] = new Point((int)(eckpunkte[i].x * masstab), (int)(eckpunkte[i].y * masstab));
+		}
+		
+		int mx[], my[];
+		mx = new int[eckpunkteZ.length];
+		my = new int[eckpunkteZ.length];
+		for(int i = 0; i < eckpunkteZ.length; i++) {
+			mx[i] = eckpunkteZ[i].x;
+			my[i] = eckpunkteZ[i].y;
+		}
+		
+		g.drawPolygon(mx, my, eckpunkteZ.length);
+	}
+	
+	public boolean contains(int x, int y) {
+		return true;
 	}
 }

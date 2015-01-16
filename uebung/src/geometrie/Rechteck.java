@@ -1,13 +1,17 @@
 package geometrie;
 
+import java.awt.Graphics;
+import java.awt.Point;
+
 public class Rechteck extends GObjekt {
-	protected int anzahl = 1;
-	protected Punkt[] eckpunkte = new Punkt[anzahl];
 	protected double br;
 	protected double ho;
+	protected int brZ;
+	protected int hoZ;
 	
 	public Rechteck() {
 		super("Rechteck", 1);
+		eckpunkte = new Punkt[anzahl];
 		eckpunkte[0] = new Punkt(0,0);
 		this.br = 1;
 		this.ho = 1;
@@ -15,6 +19,7 @@ public class Rechteck extends GObjekt {
 	
 	public Rechteck(Punkt anfangsPunkt, double br, double ho) {
 		super("Rechteck", 1);
+		eckpunkte = new Punkt[anzahl];
 		eckpunkte[0] = new Punkt(anfangsPunkt);
 		this.br = br;
 		this.ho = ho;
@@ -22,6 +27,7 @@ public class Rechteck extends GObjekt {
 	
 	public Rechteck(Rechteck r) {
 		super("Rechteck",1);
+		eckpunkte = new Punkt[anzahl];
 		eckpunkte[0] = new Punkt(r.eckpunkte[0]);
 		this.br = r.br;
 		this.br = r.br;	
@@ -91,4 +97,18 @@ public class Rechteck extends GObjekt {
 		}
 	}
 	
+	public void zeichnen(Graphics g, double masstab) {
+		eckpunkteZ = new Point[anzahl];
+		for(int i = 0; i < eckpunkteZ.length; i++) {
+			eckpunkteZ[i] = new Point((int)(eckpunkte[i].x * masstab), (int)(eckpunkte[i].y * masstab));
+		}
+		
+		brZ = (int)(br*masstab);
+		hoZ = (int)(ho*masstab);
+		g.drawRect(eckpunkteZ[0].x, eckpunkteZ[0].y, brZ, hoZ);
+	}
+	
+	public boolean contains(int x, int y) {
+		return true;
+	}
 }

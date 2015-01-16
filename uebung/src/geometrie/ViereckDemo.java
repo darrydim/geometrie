@@ -3,6 +3,7 @@ package geometrie;
 public class ViereckDemo {
 
 	public static void main(String[] args) {
+		
 		Viereck vr1 = new Viereck();
 		Punkt[] punkte = new Punkt[4];
 		punkte[0] = new Punkt(0,0);
